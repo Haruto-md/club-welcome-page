@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<header>
+    <nav class="o-navbar is-sticky">
+        <div class="o-navbar__title">
+            <a href="{{ '/home/' | relative_url }}">
+              <img src="../assets/images/favicon.png" class="o-navbar__titleLogo">
+            </a>
+        </div>
+        <button class="o-navbar__menuButton">☰</button>
+        <ul class="o-navbar__navList">
+            <li><a href="{{ '/about-us/' | relative_url }}">ABOUT US</a></li>
+            <li><a href="{{ '/contact/' | relative_url }}">CONTACT</a></li>
+            <li><a href="{{ '/article-list/' | relative_url }}">記事一覧</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+  <main class="p-article">
+    <div class="p-article__articleWrapper">
+      <div class="p-article__body">
+        <h1>page</h1>
+      </div>
+    </div>
+  </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuBtn = document.querySelector(".o-navbar__menuButton");
+      const navList = document.querySelector(".o-navbar__navList");
+  
+      menuBtn.addEventListener("click", () => {
+        navList.classList.toggle("active");
+      });
+    });
+  </script>
+</body>
+</html>

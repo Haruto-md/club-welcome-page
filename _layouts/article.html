@@ -11,10 +11,11 @@
       <div class="main-content">
         {{content}}
       </div>
-      <div class="sub-content">
+      <div class="sub-content open">
         <div class="article-meta">
+          <div class="toggle-btn" id="toggle-btn">&#9776;</div>
           <p>著者: {{ page.author }}</p>
-          <p>
+          <p class="tags">
             {% for tag in page.tags %}
               <div class="tag">{{ tag }}</div>
             {% endfor %}
@@ -28,5 +29,14 @@
 
   {% include footer.html %}
   <script type="text/javascript" src="{{ '/assets/js/toc.js' | relative_url }}"></script>
+  <script>
+    // メニュー開閉ボタンの動作
+    const toggleBtn = document.getElementById('toggle-btn');
+    const subContent = document.querySelector('.sub-content');
+
+    toggleBtn.addEventListener('click', () => {
+      subContent.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>

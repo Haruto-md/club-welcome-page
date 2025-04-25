@@ -1,13 +1,11 @@
 .article-content {
-  width: 80%; /* 全体の content の幅 */
+  display: flex;
+  gap: 2rem;
+  position: relative;
   margin: 0 auto; /* 中央寄せ */
-  padding: 20px;
-  display: flex; /* flexbox を有効にする */
-  flex-direction: row; /* 横並びにする */
 }
 .main-content {
   width: 70%; /* 本文の幅を制限 */
-  padding-right: 20px; /* sub-content との間にスペースを作る */
 }
 .main-content h1,
 .main-content h2,
@@ -16,8 +14,19 @@
 }
 
 .sub-content {
-  width: 30%; /* メタ情報の幅 */
-  position: relative; /* 親要素に position: relative を指定 */
+  width: 30%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.article-meta,
+.table-of-content {
+  background: $card-bg;
+  padding: 1rem 1.25rem;
+  border-radius: $radius;
+  box-shadow: $shadow-soft;
+  transition: transform 0.3s ease;
 }
 .sub-content .table-of-content {
   position: sticky;
@@ -37,4 +46,53 @@
   border-radius: $tag-border-radius;
   font-size: 0.75rem;
   margin: $tag-margin;
+}
+
+.toggle-btn {
+  display: none;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .article-content {
+    flex-direction: column;
+  }
+
+  .sub-content {
+    position: fixed;
+    top: 0;
+    left: 100vw;
+    width: 260px;
+    height: 100vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    padding: 1rem;
+    z-index: 99;
+
+    &.open {
+      transform: translateX(-260px);
+    }
+  }
+
+  .article-meta {
+    margin-bottom: 1rem;
+  }
+
+  .table-of-content {
+    margin-top: 1rem;
+  }
+
+  .toggle-btn {
+    display: inline-block;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: #1f2937;
+    color: white;
+    padding: 0.6rem;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 1.2rem;
+  }
 }
